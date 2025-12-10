@@ -1,0 +1,220 @@
+/* ====== ESTILOS GENERALES ====== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* ====== BARRA SUPERIOR ====== */
+.top-bar {
+    background: grey;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* ====== HEADER PRINCIPAL ====== */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo-red {
+    color: grey;
+}
+
+.search-box {
+    display: flex;
+    width: 40%;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-right: none;
+}
+
+.search-box button {
+    padding: 10px 20px;
+    background: #lightgrey;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.header-btns button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}
+
+/* ====== MENÚ PRINCIPAL ====== */
+.nav-menu {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-menu ul li a {
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-menu ul li a:hover {
+    color: #grey;
+}
+
+/* ====== CONTENEDOR PRINCIPAL ====== */
+.container {
+    display: flex;
+    max-width: 1300px;
+    margin: 25px auto;
+    padding: 0 20px;
+    gap: 25px;
+}
+
+/* ====== SIDEBAR ====== */
+.sidebar {
+    width: 220px;
+    background: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 8px 0;
+    color: #333;
+    text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+    color: #c40000;
+}
+
+/* ====== PRODUCTOS ====== */
+.products {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+}
+
+.price {
+    font-size: 18px;
+    color: #c40000;
+    font-weight: bold;
+}
+
+.product-card button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #c40000;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.ofertas {
+    text-align: center;
+    padding: 20px;
+    background: #ffe7ff;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.ofertas h2 {
+    color: #d20093;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.ofertas-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.producto {
+    background: white;
+    padding: 15px;
+    width: 200px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.2);
+    text-align: center;
+}
+
+.producto img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.precio-original {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.precio-oferta {
+    color: #ff006a;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.producto button {
+    background: #ff4acf;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 10px;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.producto button:hover {
+    background: #ff85e2;
+    transform: scale(1.05);
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Catálogo de PRODUCTOS CROCHET</title>
+
+<style>
+    body{font-family: Arial;background:#f7f7f7;margin:0;padding:0;}
+    h1{text-align:center;margin:20px;}
+    .contenedor{display:flex;gap:20px;padding:20px;}
+    .productos,.carrito{background:white;padding:20px;border-radius:10px;}
+    .productos{width:70%;}
+    .producto{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ddd;}
+    .producto img{width:70px;height:70px;border-radius:10px;object-fit:cover;margin-right:15px;}
+    .nombre{flex:1;}
+    .add{background:green;color:white;border:none;padding:7px 15px;border-radius:5px;cursor:pointer;}
+    .carrito{width:30%;}
+    table{width:100%;border-collapse:collapse;}
+    th,td{text-align:center;padding:6px;}
+    .eliminar{background:red;color:white;padding:3px 7px;border:none;border-radius:5px;cursor:pointer;}
+    .pagar{background:#0052cc;color:white;width:100%;margin-top:10px;padding:10px;border:none;border-radius:8px;font-size:18px;cursor:pointer;}
+
+    /* Modal */
+    .modal{
+        display:none;
+        position:fixed;
+        top:0;left:0;
+        width:100%;height:100%;
+        background:rgba(0,0,0,.6);
+        justify-content:center;
+        align-items:center;
+    }
+    .modal-content{
+        background:white;
+        padding:20px;
+        width:350px;
+        border-radius:10px;
+    }
+    input{
+        width:100%;
+        padding:8px;
+        margin:6px 0;
+        border:1px solid gray;
+        border-radius:5px;
+    }
+    .btnEnviar{background:green;color:white;width:100%;padding:10px;border:none;border-radius:5px;margin-top:10px;font-size:17px;cursor:pointer;}
+    .close{float:right;cursor:pointer;font-size:20px;}
+    .mensaje{display:none;background:#28a745;color:white;padding:10px;margin-top:10px;text-align:center;border-radius:6px;}
+</style>
+</head>
+
+<body>
+
+<h1>Catálogo de Productos de CROCHETH 🛍</h1>
+
+<div class="contenedor">
+
+    <!-- PRODUCTOS -->
+    <div class="productos">
+        <h2>Productos</h2>
+
+        <div class="producto">
+            <img src="vuno.png">
+            <span class="nombre">ZAPATITO CAFE</span>
+            <span>$270</span>
+            <button class="add" onclick="agregar('ZAPATITO CAFE', 270)">Agregar</button>
+        </div>
+
+        <div class="producto">
+            <img src="zdos.png">
+            <span class="nombre">ZAPATITO BEIGE</span>
+            <span>$350</span>
+            <button class="add" onclick="agregar('ZAPATITO BEIGE', 350)">Agregar</button>
+        </div>
+
+        <div class="producto">
+            <img src="zc.png">
+            <span class="nombre">ZAPATITO</span>
+            <span>$300</span>
+            <button class="add" onclick="agregar('ZAPATITO',  300)">Agregar</button>
+        </div>
+
+        <div class="producto">
+          <img src="zci.png">
+          <span class="nombre">ZAPATITO ROSA</span>
+          <span>$300</span>
+          <button class="add" onclick="agregar('ZAPATITO ROSA', 300)">Agregar</button>
+        </div>  
+    </div>
+
+    <!-- CARRITO -->
+    <div class="carrito">
+        <h2>Carrito 🛒</h2>
+
+        <table id="tablaCarrito">
+            <tr><th>Producto</th><th>Cant.</th><th>Precio</th><th></th></tr>
+        </table>
+
+        <h3>Total: $<span id="total">0</span></h3>
+
+        <button class="pagar" onclick="abrirModal()">PAGAR 💳</button>
+        <div id="msg" class="mensaje">¡Pago realizado con éxito! Gracias 🎉</div>
+    </div>
+
+</div>
+
+
+<!-- FORMULARIO DE TARJETA -->
+<div id="modalPago" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="cerrarModal()">✖</span>
+        <h3>Datos de Tarjeta</h3>
+        <input type="text" id="nombre" placeholder="Nombre en la tarjeta">
+        <input type="text" id="tarjeta" placeholder="Número de tarjeta (16 dígitos)" maxlength="16">
+        <input type="text" id="exp" placeholder="MM/AA" maxlength="5">
+        <input type="text" id="cvv" placeholder="CVV" maxlength="3">
+        <button class="btnEnviar" onclick="realizarPago()">Confirmar Pago</button>
+    </div>
+</div>
+
+
+<script>
+    let carrito = [];
+
+    function agregar(nombre, precio){
+        let producto = carrito.find(item => item.nombre === nombre);
+        
+        if(producto){
+            producto.cantidad++;
+        } else {
+            carrito.push({nombre, precio, cantidad:1});
+        }
+        mostrarCarrito();
+    }
+
+    function eliminar(nombre){
+        carrito = carrito.filter(item => item.nombre !== nombre);
+        mostrarCarrito();
+    }
+
+    function mostrarCarrito(){
+        const tabla = document.getElementById("tablaCarrito");
+        tabla.innerHTML = "<tr><th>Producto</th><th>Cant.</th><th>Precio</th><th></th></tr>";
+
+        let total = 0;
+
+        carrito.forEach(item => {
+            total += item.precio * item.cantidad;
+
+            tabla.innerHTML += `
+                <tr>
+                    <td>${item.nombre}</td>
+                    <td>${item.cantidad}</td>
+                    <td>$${item.precio * item.cantidad}</td>
+                    <td><button class="eliminar" onclick="eliminar('${item.nombre}')">X</button></td>
+                </tr>
+            `;
+        });
+
+        document.getElementById("total").innerText = total;
+    }
+
+
+    // ------- MODAL DEL PAGO -------
+    function abrirModal(){
+        if(carrito.length === 0){
+            alert("Tu carrito está vacío");
+            return;
+        }
+        document.getElementById("modalPago").style.display = "flex";
+    }
+
+    function cerrarModal(){
+        document.getElementById("modalPago").style.display = "none";
+    }
+
+    function realizarPago(){
+        let nombre = document.getElementById("nombre").value;
+        let tarjeta = document.getElementById("tarjeta").value;
+        let exp = document.getElementById("exp").value;
+        let cvv = document.getElementById("cvv").value;
+
+        if(nombre === "" || tarjeta.length !== 16 || exp === "" || cvv.length !== 3){
+            alert("Por favor completa correctamente los datos de la tarjeta.");
+            return;
+        }
+
+        cerrarModal();
+        carrito = [];
+        mostrarCarrito();
+        document.getElementById("msg").style.display = "block";
+
+        setTimeout(() =>{
+            document.getElementById("msg").style.display = "none";
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>

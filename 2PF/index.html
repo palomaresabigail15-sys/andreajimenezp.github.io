@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COLIBRI CROCHET</title>
+    <link rel="stylesheet" href="prueba3.css">
+</head>
+<body>
+
+    
+    <div class="top-bar">
+        ENVÍO GRATIS
+    </div>
+
+    
+    <header class="main-header">
+        <div class="logo">
+            <span class="logo-red">COLIBRI</span>CROCHETH
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Buscar productos…">
+            <button>🔍</button>
+        </div>
+
+        <div class="header-btns">
+
+         <a href="https://www.instagram.com/colibri.crochet_?igsh=azdmbjZ2bXZlbHE0" target="_blank">
+           <button class="boton-red">Ir a Instagram</button>
+         </a>
+         
+         <a href="https://www.facebook.com/share/1Mh61tKvyU/" target="_blank">
+           <button class="boton-red">Ir a Facebook</button>
+         </a>
+            
+        </div>
+      <div class="carrito">
+    🛒 Carrito: <span id="contadorCarrito">0</span>
+      </div>
+
+    </header>
+
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="ACERCA.html">ACERCA DE NOSOTROS</a></li>
+            <li><a href="ENVIOS.html">ENVIOS</a></li>
+            <li><a href="NM.html">NUMERO TELEFONICO</a></li>
+            <li><a href="UBICACION.html">UBICACION</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+          <section class="ofertas">
+    <h2> OFERTAS ESPECIALES</h2>
+
+    <div class="ofertas-container">
+
+        <div class="producto">
+            <img src="ofuno.jpeg" alt="NACIMIENTO">
+            <h3>NACIMIENTO</h3>
+            <p class="precio-original">$650</p>
+            <p class="precio-oferta">$499</p>
+            <button>Agregar al carrito</button>
+        </div>
+
+        <div class="producto">
+            <img src="ofdos.jpeg" alt="SONAJAS">
+            <h3>SONAJAS</h3>
+            <p class="precio-original">$280</p>
+            <p class="precio-oferta">$199</p>
+            <button>Agregar al carrito</button>
+        </div>
+
+        <div class="producto">
+            <img src="oftres.jpeg" alt="Princesa Crochet">
+            <h3>Muñeca Princesa Crochet</h3>
+            <p class="precio-original">$520</p>
+            <p class="precio-oferta">$399</p>
+            <button>Agregar al carrito</button>
+        </div>
+
+    </div>
+</section>
+
+        <aside class="sidebar">
+            <h3>Categorías</h3>
+            <ul>
+                <li><a href="BB.html">BE´BE</a></li>
+                <li><a href="VESTIDOS.html">VESTIDOS</a></li>
+                <li><a href="ZAPATOS.html">ZAPATOS</a></li>
+                <li><a href="PRINCESS.html">PRINCESAS</a></li>
+                <li><a href="PR.html">MAS Productos</a></li>
+            </ul>
+        </aside>
+
+    </div>    
+   <script>
+let carrito = 0;  
+
+function agregarCarrito() {
+    carrito++;  
+    document.getElementById("contadorCarrito").textContent = carrito;
+    alert("Producto agregado al carrito!");
+}
+
+// Hacer que todos los botones funcionen
+document.querySelectorAll(".producto button").forEach(btn => {
+    btn.addEventListener("click", agregarCarrito);
+});
+</script>
+
+</body>
+</html>
+
+   
